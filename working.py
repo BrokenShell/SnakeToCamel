@@ -1,3 +1,6 @@
+from functools import cache
+
+
 def snake_to_camel(text: str) -> str:
     """ Snakecase to Camelcase
     @param text: String
@@ -19,21 +22,35 @@ def snake_to_camel(text: str) -> str:
 
 # Next Time: Recursion
 # Intro to Python Recursion in 7 Minutes
+@cache
 def fib(n):
     """ Recursive Fibonacci """
     if n == 1 or n == 2:
-        return n
+        return 1
     return fib(n - 2) + fib(n - 1)
 
 
 def fib2(n):
     """ Iterative Fibonacci """
-    a, b = 1, 1
+    a, b = 0, 1
     for _ in range(n):
         a, b = b, b + a
     return a
 
 
+def fib3(n):
+    """ Recursive Fibonacci with Memoization """
+    if not hasattr(fib3, "memo"):
+        fib3.memo = {1: 1, 2: 1}
+
+    if n not in fib3.memo:
+        fib3.memo[n] = fib3(n - 2) + fib3(n - 1)
+
+    return fib3.memo[n]
+
+
 if __name__ == '__main__':
-    print(fib(5))
-    print(fib2(5))
+    for num in range(1, 10):
+        print(fib(num))
+        print(fib2(num))
+        print(fib3(num))
