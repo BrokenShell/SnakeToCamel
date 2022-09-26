@@ -1,17 +1,18 @@
 def snake_to_camel(text: str) -> str:
-    """ Snake Case to Camel Case
-
-    DocTests
-    >>> snake_to_camel("citizenship")
-    'citizenship'
-    >>> snake_to_camel("asylum_office")
-    'asylumOffice'
-    >>> snake_to_camel("data_current_as_of")
-    'dataCurrentAsOf'
+    """
+    DocTest
+    >>> snake_to_camel("")
+    ''
+    >>> snake_to_camel("text")
+    'text'
+    >>> snake_to_camel("some_text")
+    'someText'
+    >>> snake_to_camel("this_other_text")
+    'thisOtherText'
     """
     char_gen = iter(text)
     return "".join(
-        char if char != "_" else next(char_gen).upper()
+        char if char != "_" else next(char_gen).title()
         for char in char_gen
     )
 
