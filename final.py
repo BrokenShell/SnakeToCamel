@@ -1,11 +1,7 @@
 def snake_to_camel(text: str) -> str:
     """ Snake Case to Camel Case
 
-    @param text: String input text
-    @return: String output text
-
     DocTests
-    >>> from final import snake_to_camel
     >>> snake_to_camel("citizenship")
     'citizenship'
     >>> snake_to_camel("asylum_office")
@@ -18,3 +14,8 @@ def snake_to_camel(text: str) -> str:
         char if char != "_" else next(char_gen).upper()
         for char in char_gen
     )
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
